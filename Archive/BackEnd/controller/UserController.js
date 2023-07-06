@@ -1,4 +1,4 @@
-const User = require('../model/User');
+ const User = require('../model/User');
 const {encodePassword, comparePassword} = require('../security/passwords');
 const {response} = require('express');
 const {ROLES} = require('../security/roles');
@@ -9,7 +9,7 @@ const {generateAccessToken, generateTokens} = require("../security/tokens");
 const saveUser = async (req, res) => {
 
     const tempUser = new User({...req.body.user});
-
+    console.log(req.body.user)
 
     const user = await User.findOne({userEmail: tempUser.userEmail});
 
