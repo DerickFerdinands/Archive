@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require('mongoose');
 const PORT =process.env.PORT;
 const userRoute = require('./routes/UserRoute');
+const productRoute = require('./routes/ProductRoute');
+
 app.use(express.json());
 
 mongoose.connect("mongodb://127.0.0.1:27017/archive")
@@ -17,4 +19,5 @@ mongoose.connect("mongodb://127.0.0.1:27017/archive")
     })
 
 app.use("/api/v1/user",userRoute);
+app.use("/api/v1/product",productRoute);
 

@@ -1,9 +1,6 @@
  const User = require('../model/User');
 const {encodePassword, comparePassword} = require('../security/passwords');
-const {response} = require('express');
 const {ROLES} = require('../security/roles');
-const req = require('express/lib/request');
-const res = require('express/lib/response');
 const {generateAccessToken, generateTokens} = require("../security/tokens");
 
 const saveUser = async (req, res) => {
