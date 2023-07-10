@@ -116,11 +116,13 @@ const updateProduct = async (req, res) => {
     await Product.findOne({code: req.params.code})
         .then(async (success) => {
 
-           await success.imageUrls.forEach( async(url) => {
+            success.imageUrls.forEach( async(url) => {
                 if (!urls.some((linkUrl) => url === linkUrl)) {
                     await deleteFile(url.split('https://storage.googleapis.com/archive_product_image_bucket/')[1])
+                        .then()
+                        .catch()
                 }
-            }).then().catch()
+            })
 
             await Product.updateOne({code: req.body.code}, {
                 $set: {
