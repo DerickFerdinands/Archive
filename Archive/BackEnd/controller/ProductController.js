@@ -102,11 +102,59 @@ const removeProduct = async (req, res) => {
 
         })
         .catch((err) => {
-            console.log("ERROR",err)
+            console.log("ERROR", err)
             res.status(500).json({message: err})
         })
 
 
+}
+
+const updateProduct = async (req, res) => {
+
+    let urls = req.files.map((file) => file.linkUrl);
+
+    await Product.findOne({code: req.params.code})
+        .then(async (success) => {
+
+           await success.imageUrls.forEach( async(url) => {
+                if (!urls.some((linkUrl) => url === linkUrl)) {
+                    await deleteFile(url.split('https://storage.googleapis.com/archive_product_image_bucket/')[1])
+                }
+            }).then().catch()
+
+            await Product.updateOne({code: req.body.code}, {
+                $set: {
+                    name: req.body.name,
+                    brand: req.body.brand,
+                    category: req.body.category,
+                    description: req.body.description,
+                    price: +req.body.price,
+                    options: req.body.options.map((opt) => JSON.parse(opt)),
+                    imageUrls: req.files.map((file) => file.linkUrl)
+
+                }
+            })
+
+            res.json({message: "Product Found", data: success});
+        })
+        .catch((err) => {
+            res.status(500).json({message: err})
+        })
+
+    /* await Product.findOneAndUpdate({code: req.body.code}, {
+         $set: {
+             name: req.body.name,
+             brand: req.body.brand,
+             category: req.body.category,
+             description: req.body.description,
+             price: +req.body.price,
+             options: req.body.options.map((opt) => JSON.parse(opt)),
+             imageUrls: req.files.map((file) => file.linkUrl)
+
+         }
+     })
+         .then()
+         .catch()*/
 }
 
 module.exports = {
@@ -114,5 +162,6 @@ module.exports = {
     saveProduct,
     findAllProducts,
     findProduct,
-    removeProduct
+    removeProduct,
+    updateProduct
 }
