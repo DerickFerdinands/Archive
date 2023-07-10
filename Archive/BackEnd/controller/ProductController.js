@@ -1,8 +1,12 @@
 const {Storage} = require('@google-cloud/storage');
 const Product = require('../model/Product')
 
+const projectId = process.env.GCLOUD_PROJECT;
+
 // Creates a client
-const storage = new Storage();
+const storage = new Storage({
+    projectId
+});
 
 const testImageUpload = async (req, res) => {
 
@@ -65,7 +69,7 @@ const findProduct = async (req, res) => {
 async function deleteFile(fileName) {
 
     const deleteOptions = {
-        ifGenerationMatch: 0,
+        ifGenerationNotMatch: 0,
     };
 
     await storage.bucket(process.env.GCS_BUCKET).file(fileName).delete(deleteOptions);
@@ -85,10 +89,6 @@ const removeProduct = async (req, res) => {
                     .then(() => {
                         console.log('ok')
                     })
-                    .catch((err) => {
-                        console.log("error",err)
-                        res.status(500).json({message: err})
-                    });
             }
 
             await Product.findOneAndDelete({code: req.params.code})
@@ -99,9 +99,10 @@ const removeProduct = async (req, res) => {
                     res.status(500).json({message: err})
                 })
 
-            res.json({message: "Product Removed", data: fileNames});
+
         })
         .catch((err) => {
+            console.log("ERROR",err)
             res.status(500).json({message: err})
         })
 
