@@ -1,18 +1,23 @@
-const  {Storage} = require('@google-cloud/storage')
-const Multer = require('multer');
-const path = require('path');
+const {Storage} = require('@google-cloud/storage');
+const {Product} = require('../model/Product')
 
 
+const testImageUpload = async (req, res) => {
 
-const storage = new Storage(
-    "archive-e-commerce",
-    "archive-e-commerce-97d694326e0c.json"
-);
+    console.log(req.files)
 
-const testImageUpload = (req,res)=>{
-    console.log(path.join("../"+__dirname,"archive-e-commerce-97d694326e0c.json"))
-    res.send("OK")
+    res.send('ok');
 }
+
+const saveProduct = (req, res) => {
+    // const product = new Product();
+    console.log(req.body)
+    const parsed = req.body.options.map((opt)=>JSON.parse(opt))
+    console.log(parsed)
+    res.send('ok');
+}
+
 module.exports = {
-    testImageUpload
+    testImageUpload,
+    saveProduct
 }

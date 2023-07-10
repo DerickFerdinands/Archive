@@ -1,0 +1,13 @@
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZGVyaWNrIiwiaWF0IjoxNjg4NTI2NTUwfQ.QMD58TKZRhzhzfRrTH1Vi3evpXK7E5X6kKSN6cbFHsM
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+{
+"username":"derick"
+}
+
+###
+POST http://localhost:3000/api/v1/product
+Content-Type: multipart/form-data; boundary=file
