@@ -72,7 +72,7 @@ async function deleteFile(fileName) {
         ifGenerationNotMatch: 0,
     };
 
-    await storage.bucket(process.env.GCS_BUCKET).file(fileName).delete(deleteOptions);
+    return await storage.bucket(process.env.GCS_BUCKET).file(fileName).delete(deleteOptions);
 
 }
 
@@ -86,8 +86,8 @@ const removeProduct = async (req, res) => {
 
             for (const fileName of fileNames) {
                 await deleteFile(fileName)
-                    .then(() => {
-                        console.log('ok')
+                    .then((success) => {
+                        console.log('ok', success)
                     })
             }
 
@@ -116,13 +116,15 @@ const updateProduct = async (req, res) => {
     await Product.findOne({code: req.params.code})
         .then(async (success) => {
 
-            success.imageUrls.forEach( async(url) => {
+            for (const url of success.imageUrls) {
                 if (!urls.some((linkUrl) => url === linkUrl)) {
                     await deleteFile(url.split('https://storage.googleapis.com/archive_product_image_bucket/')[1])
-                        .then()
-                        .catch()
+                        .then((success) => {
+                            console.log('ok', success)
+                        })
                 }
-            })
+            }
+
 
             await Product.updateOne({code: req.body.code}, {
                 $set: {
@@ -136,27 +138,16 @@ const updateProduct = async (req, res) => {
 
                 }
             })
-
-            res.json({message: "Product Found", data: success});
+                .then((success)=>{
+                    res.json({message: "Product Updated", data: success})
+                })
         })
         .catch((err) => {
+            console.log(err)
             res.status(500).json({message: err})
         })
 
-    /* await Product.findOneAndUpdate({code: req.body.code}, {
-         $set: {
-             name: req.body.name,
-             brand: req.body.brand,
-             category: req.body.category,
-             description: req.body.description,
-             price: +req.body.price,
-             options: req.body.options.map((opt) => JSON.parse(opt)),
-             imageUrls: req.files.map((file) => file.linkUrl)
 
-         }
-     })
-         .then()
-         .catch()*/
 }
 
 module.exports = {
