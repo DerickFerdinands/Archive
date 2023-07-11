@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT;
 const userRoute = require('./routes/UserRoute');
 const productRoute = require('./routes/ProductRoute');
+const purchaseRouter = require('./routes/PurchaseRoute');
 const path = require("path");
 const src = path.join(__dirname, "public");
 app.use(express.json());
@@ -28,4 +29,5 @@ app.get('/', (req, res) => {
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/product", productRoute);
+app.use("/api/v1/purchase", purchaseRouter);
 
