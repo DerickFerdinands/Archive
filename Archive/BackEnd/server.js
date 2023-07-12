@@ -8,9 +8,10 @@ const productRoute = require('./routes/ProductRoute');
 const purchaseRouter = require('./routes/PurchaseRoute');
 const path = require("path");
 const src = path.join(__dirname, "public");
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(src));
+app.use(express.static('public'));
 
 mongoose.connect("mongodb://127.0.0.1:27017/archive")
     .then(() => {
