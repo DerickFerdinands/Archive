@@ -1,25 +1,38 @@
 import loginImage from '../../assets/images/pexels-amina-filkins-5409662.jpg'
 const Login = () => {
     return (<>
-        <div className="flex h-screen">
-            <div className="flex flex-1 w-2/4 sm:w-screen">
-                <div className="flex w-full    flex-1 flex-col align-center justify-center px-6 py-12 lg:px-8">
-                    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        <img
-                            className="mx-auto h-10 w-auto"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="Your Company"
-                        />
-                        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                            Sign in to your account
+        <div className=" flex h-screen">
+            <div className=" flex flex-1 w-2/4 sm:w-screen">
+                <div className="flex w-full flex-1 flex-col align-center justify-center px-6 py-12 lg:px-8">
+                    <div className=" flex flex-col gap-6 w-full sm:mx-auto sm:w-full sm:max-w-sm md:max-w-lg">
+
+                        {/*<h1 className="text-center text-5xl" style={{fontFamily:"Poppins, sans-serif",fontWeight:600}}>ARCHIVE</h1>*/}
+                        <h1 className="text-center text-4xl" style={{fontFamily:"Poppins, sans-serif",fontWeight:400}}>Hi... Welcome Back :)</h1>
+                        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"  style={{fontFamily:"Poppins, sans-serif",fontWeight:400}}>
+                            Login to your account
+                        </h2>
+                        <button
+                            style={{fontFamily:"Poppins, sans-serif",fontWeight:400, borderWidth:'1px', borderColor:'grey'}}
+                            type="submit"
+                            className="flex justify-center items-center gap-2 border-solid  flex w-full justify-center rounded-md bg-white  px-3 py-1.5 text-sm font-semibold leading-6  shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            <img
+                                className=" h-5 w-auto"
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png"
+                                alt="Your Company"
+                            />
+                            LOGIN WITH GOOGLE
+                        </button>
+                        <h2  className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"  style={{fontFamily:"Poppins, sans-serif",fontWeight:400, borderBottom:'1px solid black',borderColor:'grey'}}>
+
                         </h2>
                     </div>
 
-                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                        <form className="space-y-6" action="#" method="POST">
+                    <div className="mt-10 w-full sm:mx-auto sm:w-full sm:max-w-sm md:max-w-lg">
+                        <form className="space-y-6 w-full" action="#" method="POST">
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                    Email address
+                                    EMAIl
                                 </label>
                                 <div className="mt-2">
                                     <input
@@ -35,8 +48,8 @@ const Login = () => {
 
                             <div>
                                 <div className="flex items-center justify-between">
-                                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                        Password
+                                    <label htmlFor="password" className="font-poppins block text-sm font-medium leading-6 text-gray-900">
+                                        PASSWORD
                                     </label>
                                     <div className="text-sm">
                                         <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
@@ -59,17 +72,17 @@ const Login = () => {
                             <div>
                                 <button
                                     type="submit"
-                                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    Sign in
+                                    Login
                                 </button>
                             </div>
                         </form>
 
-                        <p className="mt-10 text-center text-sm text-gray-500">
-                            Not a member?{' '}
+                        <p className="mt-3 text-start text-sm text-gray-500">
+                            Don't have an account?{' '}
                             <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                                Start a 14 day free trial
+                                Create An Account
                             </a>
                         </p>
                     </div>
