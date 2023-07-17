@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626cdc90-1d4e-4cf2-955c-b9e3b06b84a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/pexels-anastasia-shuraeva-5704410.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/home/carousel/Carousel.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/home/newAndFeatured/NewAndFeatured.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/categories/Categories.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/categories/Categories.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/categories/categoryTile/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/categories/categoryTile/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1689420701287</updated>
       <workItem from="1689420702471" duration="9660000" />
-      <workItem from="1689478914902" duration="19895000" />
+      <workItem from="1689478914902" duration="21077000" />
     </task>
     <servers />
   </component>
