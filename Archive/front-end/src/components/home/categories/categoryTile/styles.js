@@ -10,7 +10,8 @@ export const styles = {
         fontStyle: 'normal',
         fontWeight: 700,
         lineHeight: 'normal',
-        fontSize:'100px',
+        fontSize:'200%',
+        textTransform:'uppercase'
     },
     tileImage: {
         height: '75%',
