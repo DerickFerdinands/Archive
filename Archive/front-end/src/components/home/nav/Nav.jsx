@@ -129,7 +129,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = ()=>{
+export const Nav = ({checkoutOpt})=>{
     const [open, setOpen] = useState(false)
     return <>
         <div className="bg-white">
@@ -411,18 +411,6 @@ export const Nav = ()=>{
                                     </a>
                                 </div>
 
-                                <div className="hidden lg:ml-8 lg:flex">
-                                    <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
-                                        <img
-                                            src="https://tailwindui.com/img/flags/flag-canada.svg"
-                                            alt=""
-                                            className="block h-auto w-5 flex-shrink-0"
-                                        />
-                                        <span className="ml-3 block text-sm font-medium">CAD</span>
-                                        <span className="sr-only">, change currency</span>
-                                    </a>
-                                </div>
-
                                 {/* Search */}
                                 <div className="flex lg:ml-6">
                                     <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
@@ -437,6 +425,9 @@ export const Nav = ()=>{
                                         <ShoppingBagIcon
                                             className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                             aria-hidden="true"
+                                            onClick={()=>{
+                                                checkoutOpt(true)
+                                            }}
                                         />
                                         <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
                                         <span className="sr-only">items in cart, view bag</span>
