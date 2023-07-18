@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {saveUser,loginUser,findUser,deleteUser,updateUser} = require('../controller/UserController');
+const {saveUser,loginUser,findUser,deleteUser,updateUser,saveUserWithGoogle,loginUserWithGoogle} = require('../controller/UserController');
 
 router.route('/')
     .post(saveUser)
@@ -11,5 +11,7 @@ router.route('/:email')
     .delete(deleteUser)
 
 router.post('/login',loginUser)
+router.post('/login/gis',loginUserWithGoogle)
+router.post('/gis',saveUserWithGoogle)
 
 module.exports = router;

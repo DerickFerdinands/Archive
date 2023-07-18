@@ -10,8 +10,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     userAddress: {
-        type: String,
-        required: true
+        type: String
     },
     userEmail: {
         type: String,
@@ -20,12 +19,17 @@ const UserSchema = new mongoose.Schema({
     },
     userContactNumber: {
         type: String,
-        required: true,
         unique: true
     },
     userPassword: {
-        type: String,
+        type: String
+    },
+    authenticatedWithGoogle:{
+        type: Boolean,
         required: true
+    },
+    userImageUrl:{
+        type: String
     },
     userRefreshToken: {
         type: String,

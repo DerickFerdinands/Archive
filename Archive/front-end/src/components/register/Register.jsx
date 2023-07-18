@@ -1,14 +1,39 @@
-
-import {GoogleLogin} from "react-google-login";
 import regImage from "../../assets/images/pexels-gabriela-guerino-1839904.jpg";
 import {Link, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import jwtDecode from "jwt-decode";
 
 export const Register = () => {
     let navigate = useNavigate();
+
+    const [user, setUser] = useState({});
+
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID Token: " + response.credential)
+        var userObj = jwtDecode(response.credential)
+        console.log(userObj)
+        setUser(userObj)
+    }
+
+    useEffect(() => {
+        /*global google*/
+        google.accounts.id.initialize({
+                client_id: "541200273937-mln6ru48vhhgo6tqsfv1rkgvj3n7vkdk.apps.googleusercontent.com",
+                callback: handleCallbackResponse
+            }
+        )
+        google.accounts.id.renderButton(
+            document.getElementById("createAccountBtn"),
+            {
+                theme: "outline",
+            }
+        )
+        google.accounts.id.prompt();
+    }, [])
     return <>
         <div className=" flex h-screen">
             <div className="pl-5 pr-5 justify-center flex flex-1 w-2/4 sm:w-screen">
-                <form method="post"  className={" flex flex-col justify-center items-center h-screen"}>
+                <form method="post" className={" flex flex-col justify-center items-center h-screen"}>
                     <div className="space-y-12">
 
 
@@ -16,6 +41,7 @@ export const Register = () => {
                             <h1 className="text-center text-4xl mb-10"
                                 style={{fontFamily: "Poppins, sans-serif", fontWeight: 400}}>Create Your Account</h1>
                             <button
+                                id="createAccountBtn"
                                 style={{
                                     fontFamily: "Poppins, sans-serif",
                                     fontWeight: 400,
@@ -34,13 +60,16 @@ export const Register = () => {
                             </button>
 
 
-                            <h2 className="border-t pt-10 border-gray-900/10 text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-                            <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive
+                            <h2 className="border-t pt-10 border-gray-900/10 text-base font-semibold leading-7 text-gray-900">Personal
+                                Information</h2>
+                            <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can
+                                receive
                                 mail.</p>
 
                             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                                 <div className="sm:col-span-3">
-                                    <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="first-name"
+                                           className="block text-sm font-medium leading-6 text-gray-900">
                                         First name
                                     </label>
                                     <div className="mt-2">
@@ -55,7 +84,8 @@ export const Register = () => {
                                 </div>
 
                                 <div className="sm:col-span-3">
-                                    <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="last-name"
+                                           className="block text-sm font-medium leading-6 text-gray-900">
                                         Last name
                                     </label>
                                     <div className="mt-2">
@@ -70,7 +100,8 @@ export const Register = () => {
                                 </div>
 
                                 <div className="sm:col-span-4">
-                                    <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="email"
+                                           className="block text-sm font-medium leading-6 text-gray-900">
                                         Email address
                                     </label>
                                     <div className="mt-2">
@@ -83,7 +114,6 @@ export const Register = () => {
                                         />
                                     </div>
                                 </div>
-
 
 
                                 <div className="col-span-full">
@@ -117,7 +147,8 @@ export const Register = () => {
                                 </div>
 
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="region"
+                                           className="block text-sm font-medium leading-6 text-gray-900">
                                         Password
                                     </label>
                                     <div className="mt-2">
@@ -132,7 +163,8 @@ export const Register = () => {
                                 </div>
 
                                 <div className="sm:col-span-2">
-                                    <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="postal-code"
+                                           className="block text-sm font-medium leading-6 text-gray-900">
                                         Confirm password
                                     </label>
                                     <div className="mt-2">
@@ -152,7 +184,7 @@ export const Register = () => {
 
 
                     <button
-                        onClick={()=>{
+                        onClick={() => {
                             navigate('/home')
                         }}
                         type="submit"

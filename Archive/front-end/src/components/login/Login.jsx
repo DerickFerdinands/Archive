@@ -1,8 +1,33 @@
 import loginImage from '../../assets/images/pexels-amina-filkins-5409662.jpg';
-import {GoogleLogin} from 'react-google-login';
 import {Link, useNavigate} from "react-router-dom";
-
+import {useEffect, useState} from "react";
+import jwtDecode from "jwt-decode";
 const Login = () => {
+
+    const [user,setUser] =  useState({});
+
+    function handleCallbackResponse(response){
+        console.log("Encoded JWT ID Token: "+response.credential)
+        var userObj = jwtDecode(response.credential)
+        console.log(userObj)
+        setUser(userObj)
+    }
+
+    useEffect(() => {
+        console.log(document.cookie)
+    /*global google*/
+    google.accounts.id.initialize({
+        client_id:"541200273937-mln6ru48vhhgo6tqsfv1rkgvj3n7vkdk.apps.googleusercontent.com",
+        callback: handleCallbackResponse
+    });
+    google.accounts.id.renderButton(
+        document.getElementById("signInBtn"),
+        {
+            theme:"outline",
+        }
+    )
+        google.accounts.id.prompt();
+    }, [])
 
     let navigate = useNavigate();
     return (<>
@@ -19,6 +44,7 @@ const Login = () => {
                                 Login to your account
                             </h2>
                             <button
+                                id="signInBtn"
                                 style={{
                                     fontFamily: "Poppins, sans-serif",
                                     fontWeight: 400,
@@ -44,17 +70,6 @@ const Login = () => {
                                 }}>
 
                             </h2>
-                            <GoogleLogin
-                                clientId="541200273937-3mtsu8oi6c7h1m0k3tp5kgjt0nt7vaff.apps.googleusercontent.com"
-                                buttonText="Login"
-                                onSuccess={(res) => {
-                                    console.log(res)
-                                }}
-                                onFailure={(res) => {
-                                    console.log(res)
-                                }}
-                                cookiePolicy={'single_host_origin'}
-                            />
                         </div>
 
                         <div className="mt-10 w-full sm:mx-auto sm:w-full sm:max-w-sm md:max-w-lg">
@@ -83,7 +98,8 @@ const Login = () => {
                                             PASSWORD
                                         </label>
                                         <div className="text-sm">
-                                            <a href="/register" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                            <a href="/register"
+                                               className="font-semibold text-indigo-600 hover:text-indigo-500">
                                                 Forgot password?
                                             </a>
                                         </div>
@@ -102,8 +118,8 @@ const Login = () => {
 
                                 <div>
                                     <button
-                                        onClick={()=>{
-                                        navigate('/register')
+                                        onClick={() => {
+                                            navigate('/register')
                                         }}
                                         type="submit"
                                         className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -116,7 +132,8 @@ const Login = () => {
                             <p className="mt-3 text-start text-sm text-gray-500">
                                 Don't have an account?{' '}
                                 <Link to={"/register"}>
-                                    <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                    <a href="/register"
+                                       className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                                         Create An Account
                                     </a>
                                 </Link>
