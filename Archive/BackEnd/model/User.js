@@ -19,7 +19,9 @@ const UserSchema = new mongoose.Schema({
     },
     userContactNumber: {
         type: String,
-        unique: true
+        unique: true,
+        required:false,
+        default:null
     },
     userPassword: {
         type: String

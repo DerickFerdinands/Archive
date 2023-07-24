@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const generateTokens = (user) => {
     return {
-        accessToken: jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10800s'}),
+        accessToken: jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '604800s'}),
         refreshToken: jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
     }
 }
@@ -10,7 +10,7 @@ const generateTokens = (user) => {
 const generateAccessToken = (refreshToken) => {
     const user = verifyRefreshToken(refreshToken);
     if (user !== null)
-        return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10800s'})
+        return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '604800s'})
     else
         return null;
 }

@@ -12,7 +12,7 @@ const products = [
         color: 'Black',
     },
     {
-        id: 1,
+        id: 2,
         name: 'Basic Tee',
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
@@ -21,7 +21,7 @@ const products = [
         color: 'Black',
     },
     {
-        id: 1,
+        id: 3,
         name: 'Basic Tee',
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
@@ -30,7 +30,7 @@ const products = [
         color: 'Black',
     },
     {
-        id: 1,
+        id: 4,
         name: 'Basic Tee',
         href: '#',
         imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',

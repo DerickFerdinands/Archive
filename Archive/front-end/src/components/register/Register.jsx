@@ -2,17 +2,70 @@ import regImage from "../../assets/images/pexels-gabriela-guerino-1839904.jpg";
 import {Link, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+import Cookies from "js-cookie";
+// import Alert from '@mui/material/Alert';
 
 export const Register = () => {
     let navigate = useNavigate();
 
-    const [user, setUser] = useState({});
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [address, setAddress] = useState("");
+    const [email, setEmail] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [password, setPassword] = useState("");
+
+    useEffect(() => {
+
+        console.log(firstName, lastName, address, email, contactNumber, password)
+    })
 
     function handleCallbackResponse(response) {
         console.log("Encoded JWT ID Token: " + response.credential)
         var userObj = jwtDecode(response.credential)
         console.log(userObj)
-        setUser(userObj)
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/api/v1/user/gis',
+            data: {
+                g_jwt_token: response.credential
+            }
+        }).then((res) => {
+                console.log(res)
+            Cookies.set("accessToken",response.data.data.accessToken,{expires:7})
+            Cookies.set("refreshToken",response.data.data.refreshToken)
+
+            navigate('/home')
+            }
+        ).catch((err) => {
+            alert(err)
+        })
+    }
+
+    const registerUser = (e) => {
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/api/v1/user',
+            data: {
+                user: {
+                    "userFirstName": firstName,
+                    "userLastName": lastName,
+                    "userAddress": address,
+                    "userEmail": email,
+                    "userContactNumber": contactNumber,
+                    "userPassword": password
+                }
+            }
+        }).then(
+            (res) => {
+                console.log(res)
+                navigate('/home')
+            }
+        ).catch((err) => {
+            alert(err.message)
+        })
     }
 
     useEffect(() => {
@@ -33,7 +86,8 @@ export const Register = () => {
     return <>
         <div className=" flex h-screen">
             <div className="pl-5 pr-5 justify-center flex flex-1 w-2/4 sm:w-screen">
-                <form method="post" className={" flex flex-col justify-center items-center h-screen"}>
+                <form onSubmit={(e) => e.preventDefault()} method="post"
+                      className={" flex flex-col justify-center items-center h-screen"}>
                     <div className="space-y-12">
 
 
@@ -74,6 +128,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setFirstName(e.target.value)}
                                             type="text"
                                             name="first-name"
                                             id="first-name"
@@ -90,6 +145,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setLastName(e.target.value)}
                                             type="text"
                                             name="last-name"
                                             id="last-name"
@@ -106,6 +162,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setEmail(e.target.value)}
                                             id="email"
                                             name="email"
                                             type="email"
@@ -123,6 +180,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setAddress(e.target.value)}
                                             type="text"
                                             name="street-address"
                                             id="street-address"
@@ -138,6 +196,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setContactNumber(e.target.value)}
                                             type="text"
                                             name="contactNumber"
                                             id="contactNumber"
@@ -153,6 +212,7 @@ export const Register = () => {
                                     </label>
                                     <div className="mt-2">
                                         <input
+                                            onChange={(e) => setPassword(e.target.value)}
                                             type="password"
                                             name="password"
                                             id="password"
@@ -184,23 +244,21 @@ export const Register = () => {
 
 
                     <button
-                        onClick={() => {
-                            navigate('/home')
-                        }}
+                        onClick={registerUser}
                         type="submit"
                         className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         Register
                     </button>
-                    <p className="self-start mt-3 text-start text-sm text-gray-500">
+                    <h5 className="flex gap-1 items-center self-start mt-3 text-start text-sm text-gray-500">
                         Already have an account?{' '}
                         <Link to={"/"}>
-                            <a href="/" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                            <h5  className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                                 Login
-                            </a>
+                            </h5>
                         </Link>
 
-                    </p>
+                    </h5>
                 </form>
             </div>
             <div className="pl-5 pr-5 justify-center items-center  w-2/4 hidden md:flex lg:flex xl:flex 2xl:flex ">

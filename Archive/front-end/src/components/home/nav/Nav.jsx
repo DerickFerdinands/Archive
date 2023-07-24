@@ -5,6 +5,62 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 const navigation = {
     categories: [
         {
+            id: 'men',
+            name: 'Men',
+            featured: [
+                {
+                    name: 'New Arrivals',
+                    href: '#',
+                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
+                    imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
+                },
+                {
+                    name: 'Artwork Tees',
+                    href: '#',
+                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
+                    imageAlt:
+                        'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
+                },
+            ],
+            sections: [
+                {
+                    id: 'clothing',
+                    name: 'Clothing',
+                    items: [
+                        { name: 'Tops', href: '#' },
+                        { name: 'Pants', href: '#' },
+                        { name: 'Sweaters', href: '#' },
+                        { name: 'T-Shirts', href: '#' },
+                        { name: 'Jackets', href: '#' },
+                        { name: 'Activewear', href: '#' },
+                        { name: 'Browse All', href: '#' },
+                    ],
+                },
+                {
+                    id: 'accessories',
+                    name: 'Accessories',
+                    items: [
+                        { name: 'Watches', href: '#' },
+                        { name: 'Wallets', href: '#' },
+                        { name: 'Bags', href: '#' },
+                        { name: 'Sunglasses', href: '#' },
+                        { name: 'Hats', href: '#' },
+                        { name: 'Belts', href: '#' },
+                    ],
+                },
+                {
+                    id: 'brands',
+                    name: 'Brands',
+                    items: [
+                        { name: 'Re-Arranged', href: '#' },
+                        { name: 'Counterfeit', href: '#' },
+                        { name: 'Full Nelson', href: '#' },
+                        { name: 'My Way', href: '#' },
+                    ],
+                },
+            ],
+        },
+        {
             id: 'women',
             name: 'Women',
             featured: [
@@ -62,66 +118,11 @@ const navigation = {
                 },
             ],
         },
-        {
-            id: 'men',
-            name: 'Men',
-            featured: [
-                {
-                    name: 'New Arrivals',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-                    imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
-                },
-                {
-                    name: 'Artwork Tees',
-                    href: '#',
-                    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
-                    imageAlt:
-                        'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
-                },
-            ],
-            sections: [
-                {
-                    id: 'clothing',
-                    name: 'Clothing',
-                    items: [
-                        { name: 'Tops', href: '#' },
-                        { name: 'Pants', href: '#' },
-                        { name: 'Sweaters', href: '#' },
-                        { name: 'T-Shirts', href: '#' },
-                        { name: 'Jackets', href: '#' },
-                        { name: 'Activewear', href: '#' },
-                        { name: 'Browse All', href: '#' },
-                    ],
-                },
-                {
-                    id: 'accessories',
-                    name: 'Accessories',
-                    items: [
-                        { name: 'Watches', href: '#' },
-                        { name: 'Wallets', href: '#' },
-                        { name: 'Bags', href: '#' },
-                        { name: 'Sunglasses', href: '#' },
-                        { name: 'Hats', href: '#' },
-                        { name: 'Belts', href: '#' },
-                    ],
-                },
-                {
-                    id: 'brands',
-                    name: 'Brands',
-                    items: [
-                        { name: 'Re-Arranged', href: '#' },
-                        { name: 'Counterfeit', href: '#' },
-                        { name: 'Full Nelson', href: '#' },
-                        { name: 'My Way', href: '#' },
-                    ],
-                },
-            ],
-        },
+
     ],
     pages: [
-        { name: 'Company', href: '#' },
-        { name: 'Stores', href: '#' },
+        { name: 'Electronics', href: '#' },
+        { name: 'Favorites', href: '#' },
     ],
 }
 
@@ -129,7 +130,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = ({checkoutOpt})=>{
+export const Nav = ({checkoutOpt,userImageUrl})=>{
     const [open, setOpen] = useState(false)
     return <>
         <div className="bg-white">
@@ -408,7 +409,7 @@ export const Nav = ({checkoutOpt})=>{
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src={userImageUrl}
                                                 alt=""
                                             />
                                         </Menu.Button>

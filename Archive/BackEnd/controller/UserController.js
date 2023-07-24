@@ -22,7 +22,8 @@ const saveUserWithGoogle = async (req, res) => {
                 userEmail: payload.email,
                 authenticatedWithGoogle:true,
                 userImageUrl:payload.picture,
-                userRole:ROLES.USER
+                userRole:ROLES.USER,
+                userContactNumber:''
             });
 
 
@@ -106,7 +107,8 @@ const loginUser = async (req, res) => {
                     message: "Logged In",
                     data: {
                         accessToken: generateAccessToken(response.userRefreshToken),
-                        refreshToken: response.userRefreshToken
+                        refreshToken: response.userRefreshToken,
+                        user:response
                     }
                 })
             } else {
@@ -135,7 +137,8 @@ const loginUserWithGoogle = async (req, res) => {
                         message: "Logged In",
                         data: {
                             accessToken: generateAccessToken(response.userRefreshToken),
-                            refreshToken: response.userRefreshToken
+                            refreshToken: response.userRefreshToken,
+                            user:response
                         }
                     })
                 } else {

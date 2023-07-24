@@ -1,17 +1,25 @@
 import {Nav} from "./nav/Nav";
 import {Hero} from "./hero/Hero";
 import {Categories} from "./categories/Categories";
-import {HeroCarousel} from "./carousel/Carousel";
 import {NewAndFeatured} from "./newAndFeatured/NewAndFeatured";
 import {Partners} from "./partners/Partners";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Checkout} from "../checkout/Checkout";
+import { useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 export const HopePage = () => {
-    const [open, setOpen] = useState(true)
+    const {state} = useLocation();
 
+    const [open, setOpen] = useState(false)
+    const [userImageUrl, setUserImageUrl] = useState("")
+
+    useEffect(()=>{
+        setUserImageUrl(Cookies.get('userImageUrl'))
+        console.log("UserImageUrl",userImageUrl)
+    },[])
     return <>
-        <Nav checkoutOpt={setOpen}/>
+        <Nav checkoutOpt={setOpen} userImageUrl={userImageUrl} />
         <Hero/>
         <Categories/>
         <NewAndFeatured/>

@@ -8,7 +8,9 @@ const productRoute = require('./routes/ProductRoute');
 const purchaseRouter = require('./routes/PurchaseRoute');
 const path = require("path");
 const src = path.join(__dirname, "public");
+const cors = require('cors')
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
