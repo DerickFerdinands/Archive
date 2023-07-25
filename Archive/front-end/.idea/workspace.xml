@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626cdc90-1d4e-4cf2-955c-b9e3b06b84a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/product/Favourites.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product/ProductScreen.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product/Apparel.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product/ProductList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/HomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/nav/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/nav/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/register/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/ProductDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/ProductDetails.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/ProductScreen.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +67,8 @@
       <workItem from="1690032925002" duration="4071000" />
       <workItem from="1690204324189" duration="11996000" />
       <workItem from="1690252048184" duration="5542000" />
-      <workItem from="1690260807791" duration="6729000" />
+      <workItem from="1690260807791" duration="10714000" />
+      <workItem from="1690279718808" duration="2695000" />
     </task>
     <servers />
   </component>
