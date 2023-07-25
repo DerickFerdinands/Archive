@@ -37,6 +37,9 @@ export const SortProducts = ({setIsHidden, setUser, user}) => {
             case "shoes":
                 setHeroImg("https://reebok.bynder.com/transform/c797aa98-6f3b-44da-ae82-c6a604096e24/RB0039_FW23_PumpTZ_L_FD_Masthead_HP_DT?fm=jpg&q=90&fit=fill&w=1200p")
                 break;
+            case "kids":
+                setHeroImg("https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_1824,c_limit/faee0f4f-10a5-479a-bfe3-daa12fef0c2d/nike-kids-shoes-clothing-and-accessories-nike-com.jpg")
+                break;
             default:
                 return "";
         }
