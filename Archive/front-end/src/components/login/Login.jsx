@@ -6,7 +6,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Swal from "sweetalert2";
 
-const Login = () => {
+
+const Login = ({user, setUser, setIsHidden}) => {
 
     let navigate = useNavigate();
     // let history = useHistory();
@@ -18,6 +19,7 @@ const Login = () => {
 
     const [emailErr, setEmailErr] = useState("hidden");
     const [passwordErr, setPasswordErr] = useState("hidden");
+
 
     function handleCallbackResponse(response) {
         console.log("Encoded JWT ID Token: " + response.credential)
@@ -37,8 +39,12 @@ const Login = () => {
             Cookies.set("refreshToken", response.data.data.refreshToken)
             Cookies.set("userImageUrl", response.data.data.user.userImageUrl,{expires:7})
 
-            console.log(Cookies.get('accessToken'), Cookies.get('refreshToken'))
-            navigate('/home', {state: {...response.data.data.user}})
+            console.log('OK')
+            setUser(response.data.data.user)
+            console.log('OK')
+            navigate('/home', {state: {user:response.data.data.user}})
+            console.log('OK')
+
         }).catch((err) => {
             console.log(err.response.data.message)
         })
@@ -59,6 +65,9 @@ const Login = () => {
         google.accounts.id.prompt();
     }, [])
 
+    useEffect(()=>{
+        setIsHidden(true)
+    })
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -108,7 +117,9 @@ const Login = () => {
                     })
 
                     console.log(response.data.data.user)
-                    navigate('/home', {state: {...response.data.data.user}})
+                    setUser(response.data.data.user)
+
+                    navigate('/home', {state: {user:response.data.data.user}})
                 })
             }
 

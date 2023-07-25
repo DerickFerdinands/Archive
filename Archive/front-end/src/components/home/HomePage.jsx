@@ -7,23 +7,23 @@ import {useEffect, useState} from "react";
 import {Checkout} from "../checkout/Checkout";
 import { useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {useData} from "../../hooks/data";
 
-export const HopePage = () => {
+export const HopePage = ({setOpen,open,setUser,user, setIsHidden}) => {
+
     const {state} = useLocation();
 
-    const [open, setOpen] = useState(false)
-    const [userImageUrl, setUserImageUrl] = useState("")
+
 
     useEffect(()=>{
-        setUserImageUrl(Cookies.get('userImageUrl'))
-        console.log("UserImageUrl",userImageUrl)
-    },[])
+        console.log("User", user)
+        setIsHidden(false)
+    })
+
     return <>
-        <Nav checkoutOpt={setOpen} userImageUrl={userImageUrl} />
         <Hero/>
         <Categories/>
         <NewAndFeatured/>
         <Partners/>
-        <Checkout open={open} setOpen={setOpen}/>
     </>
 }

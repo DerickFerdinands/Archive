@@ -6,7 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 // import Alert from '@mui/material/Alert';
 
-export const Register = () => {
+export const Register = ({user, setUser, setIsHidden}) => {
     let navigate = useNavigate();
 
     const [firstName, setFirstName] = useState("");
