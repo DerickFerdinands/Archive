@@ -8,6 +8,7 @@ import {Apparel, ProductScreen} from "./product/Apparel";
 import {Nav} from "./home/nav/Nav";
 import {useState} from "react";
 import {Checkout} from "./checkout/Checkout";
+import {SortProducts} from "./product/SortProducts";
 
 export const Router = ()=>{
 
@@ -27,6 +28,7 @@ return<>
                 <Route path={"/home"} element={<HopePage setIsHidden={setIsHidden}/>}/>
                 <Route path={"/product/:code"} element={<ProductDetails user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
                 <Route path={"/apparel"} element={<Apparel user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
+                <Route path={"/products/:category"} element={<SortProducts user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
                 <Route path={"/favourites"} element={<Favourites user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
             </Routes>
         </BrowserRouter>

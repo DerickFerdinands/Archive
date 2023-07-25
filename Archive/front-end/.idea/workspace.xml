@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626cdc90-1d4e-4cf2-955c-b9e3b06b84a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/product/Apparel.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/product/ProductList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/product/SortProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackEnd/controller/ProductController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/controller/ProductController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackEnd/routes/ProductRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/routes/ProductRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Router.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/categories/Categories.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/categories/Categories.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/categories/categoryTile/CategoryTile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/categories/categoryTile/CategoryTile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/home/hero/Hero.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/hero/Hero.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/Apparel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/Apparel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/product/ProductDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/ProductDetails.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/product/ProductScreen.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/ProductList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/ProductList.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +57,19 @@
       <recent name="C:\Projects\RWAD\Archive\Archive\front-end\src\assets\images" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +86,7 @@
       <workItem from="1690204324189" duration="11996000" />
       <workItem from="1690252048184" duration="5542000" />
       <workItem from="1690260807791" duration="10714000" />
-      <workItem from="1690279718808" duration="2695000" />
+      <workItem from="1690279718808" duration="9728000" />
     </task>
     <servers />
   </component>

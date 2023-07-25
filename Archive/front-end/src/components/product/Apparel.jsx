@@ -3,10 +3,12 @@ import {useParams} from 'react-router-dom';
 import {Nav} from "../home/nav/Nav";
 import {ProductList} from "./ProductList";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 export const Apparel = ({setOpen, userImageUrl,setIsHidden}) => {
 
-    let {category} = useParams();
+    const navigate = useNavigate();
+
     const [products,setProducts] = useState([]);
 
     useEffect(() => {
@@ -29,7 +31,12 @@ export const Apparel = ({setOpen, userImageUrl,setIsHidden}) => {
         <h1 style={{fontFamily: 'Poppins', fontWeight: 500}}
             className="mt-5 text-center text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">APPAREL</h1>
         <div className={"relative flex h-3/4 gap-0 justify-center"}>
-            <div className={"hover:opacity-80 relative m-5 h-full w-full bg-gray-100"}>
+            <div
+                onClick={()=>{
+                    navigate('/products/men')
+                }
+                }
+                className={"hover:opacity-80 relative m-5 h-full w-full bg-gray-100"}>
                 <img className={"w-full h-ful "}
                      src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/d1b680aa-e30c-4801-97e2-3e9f502b8823/men-s-shoes-clothing-accessories.png"
                      alt=""/>
@@ -53,7 +60,12 @@ export const Apparel = ({setOpen, userImageUrl,setIsHidden}) => {
 
                 </div>
             </div>
-            <div className={"hover:opacity-80  relative m-5 h-full w-full bg-gray-200"}>
+            <div
+                onClick={()=>{
+                    navigate('/products/women')
+                }
+                }
+                className={"hover:opacity-80  relative m-5 h-full w-full bg-gray-200"}>
                 <img className={"w-full h-ful "}
                      src="https://static.nike.com/a/images/f_auto/dpr_1.0,cs_srgb/w_906,c_limit/0d3d3582-f629-4c33-93bb-6222ccc9cdc7/women-s-shoes-clothing-accessories.jpg"
                      alt=""/>

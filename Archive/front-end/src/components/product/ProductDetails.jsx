@@ -100,7 +100,7 @@ export const ProductDetails = () => {
                 <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
                     <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                         <img
-                            src={product.imageUrls[1]}
+                            src={product.imageUrls[0]}
                             alt={product.imageUrls[0]}
                             className="h-full w-full object-cover object-center"
                         />

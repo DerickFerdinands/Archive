@@ -66,6 +66,17 @@ const findProduct = async (req, res) => {
         })
 }
 
+const filterProducts = async (req,res)=>{
+
+    await Product.find({category:{ $regex: '.*' + req.body.filterOption + '.*' }})
+        .then((success) => {
+            res.json({message: "Products Found", data: success});
+        })
+        .catch((err) => {
+            res.status(500).json({message: err})
+        })
+}
+
 async function deleteFile(fileName) {
 
     const deleteOptions = {
@@ -156,5 +167,6 @@ module.exports = {
     findAllProducts,
     findProduct,
     removeProduct,
-    updateProduct
+    updateProduct,
+    filterProducts
 }
