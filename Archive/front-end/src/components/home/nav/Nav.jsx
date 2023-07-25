@@ -1,6 +1,8 @@
-import { Fragment, useState } from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Dialog, Popover, Tab, Transition, Menu } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import {useNavigate}  from 'react-router-dom';
+
 
 const navigation = {
     categories: [
@@ -121,8 +123,8 @@ const navigation = {
 
     ],
     pages: [
-        { name: 'Electronics', href: '#' },
-        { name: 'Favorites', href: '#' },
+        { name: 'Electronics', href: '/products/electronics' },
+        { name: 'Favorites', href: '/products/favorites' },
     ],
 }
 
@@ -132,6 +134,9 @@ function classNames(...classes) {
 
 export const Nav = ({checkoutOpt,userImageUrl, isHidden})=>{
     const [open, setOpen] = useState(false)
+    const navigate = useNavigate();
+
+
     return <>
         <div className={`bg-white ${isHidden?"hidden":""}`}>
             {/* Mobile menu */}
@@ -237,9 +242,11 @@ export const Nav = ({checkoutOpt,userImageUrl, isHidden})=>{
                                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                                     {navigation.pages.map((page) => (
                                         <div key={page.name} className="flow-root">
-                                            <a href={page.href} className="-m-2 block p-2 font-medium text-gray-900">
+                                            <h5 onClick={()=>{
+                                                navigate(page.href)
+                                            }} className="-m-2 block p-2 font-medium text-gray-900">
                                                 {page.name}
-                                            </a>
+                                            </h5>
                                         </div>
                                     ))}
                                 </div>

@@ -3,24 +3,24 @@ import {useEffect, useState} from "react";
 import {ProductList} from "./ProductList";
 import axios from "axios";
 
-export const SortProducts = () => {
+export const SortProducts = ({setIsHidden, setUser, user}) => {
     let {category} = useParams();
 
     const [heroImg, setHeroImg] = useState("");
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
+        setIsHidden(false)
         axios({
             method: 'post',
             url: `http://localhost:3001/api/v1/product/filter`,
-            data:{
-                filterOption:category
+            data: {
+                filterOption: category
             }
-        }).then((response)=>{
+        }).then((response) => {
             console.log(response)
             setProducts(response.data.data)
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err.response.data.message)
         })
 
@@ -40,20 +40,20 @@ export const SortProducts = () => {
             default:
                 return "";
         }
-    },[])
+    }, [])
 
     return <>
         <div className={"mt-4 relative flex justify-center items-center w-full h-3/4 "}>
             <img className={"w-11/12 h-auto"} src={heroImg} alt=""/>
 
-            <div style={{inset:0,margin:'auto'}}
-                className={"absolute flex justify-center items-center"}>
+            <div style={{inset: 0, margin: 'auto'}}
+                 className={"absolute flex justify-center items-center"}>
                 <h1 style={{
                     fontFamily: 'Poppins',
                     fontWeight: 500,
                     height: 'max-content',
                     color: 'white',
-                    fontSize:'50px'
+                    fontSize: '50px'
                 }}
                     className=" mt-5 text-center text-7xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{category}</h1>
             </div>
