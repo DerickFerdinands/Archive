@@ -124,7 +124,10 @@ const navigation = {
     ],
     pages: [
         { name: 'Electronics', href: '/products/electronics' },
+        { name: 'Shoes', href: '/products/shoes' },
         { name: 'Favorites', href: '/products/favorites' },
+        { name: 'Home', href: '/home' }
+
     ],
 }
 

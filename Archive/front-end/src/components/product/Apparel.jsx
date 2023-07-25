@@ -16,11 +16,14 @@ export const Apparel = ({setOpen, userImageUrl,setIsHidden}) => {
         setIsHidden(false)
 
         axios({
-            method: 'get',
-            url: `http://localhost:3001/api/v1/product`
+            method: 'post',
+            url: `http://localhost:3001/api/v1/product/filter`,
+            data:{
+                filterOption:'apparel'
+            }
         }).then((response)=>{
             console.log(response)
-            setProducts(response.data.products)
+            setProducts(response.data.data)
         }).catch((err)=>{
             console.log(err.response.data.message)
         })
