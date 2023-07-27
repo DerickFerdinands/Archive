@@ -1,5 +1,6 @@
 import {Router} from "./components/Router";
+import {GlobalProvider} from "./data/GlobalCart";
 
 export default function App() {
-    return (<><Router/></>)
+    return (<><GlobalProvider><Router/></GlobalProvider></>)
 }

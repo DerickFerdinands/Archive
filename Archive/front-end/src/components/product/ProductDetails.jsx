@@ -1,8 +1,12 @@
-import {useEffect, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import {StarIcon} from '@heroicons/react/20/solid'
 import {RadioGroup} from '@headlessui/react'
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import Swal from "sweetalert2";
+import {GlobalContext} from "../../data/GlobalCart";
+import {CustomizeCart} from "../../data/cart";
+
 
 const reviews = {href: '#', average: 4, totalCount: 117}
 
@@ -10,15 +14,22 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const ProductDetails = () => {
+
+export const ProductDetails = ({user, setUser, setIsHidden}) => {
+
+    const {cart, setCart} = useContext(GlobalContext);
 
     let {code} = useParams();
 
-    const [selectedSize, setSelectedSize] = useState('XL')
+    const [selectedSize, setSelectedSize] = useState('')
 
     const [product, setProduct] = useState({imageUrls: [], options: []});
 
+    const handleCart = new CustomizeCart();
+
+
     useEffect(() => {
+        setIsHidden(false)
         axios({
             method: 'get',
             url: `http://localhost:3001/api/v1/product/${code}`
@@ -120,7 +131,9 @@ export const ProductDetails = () => {
 
                                 </div>
 
-                                <RadioGroup value={selectedSize} onChange={(change)=>{setSelectedSize(change.optionName)}} className="mt-4">
+                                <RadioGroup value={selectedSize} onChange={(change) => {
+                                    setSelectedSize(change.optionName)
+                                }} className="mt-4">
                                     <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
                                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
                                         {product.options.map((size) => (
@@ -128,7 +141,6 @@ export const ProductDetails = () => {
                                                 key={size.optionName}
                                                 value={size}
                                                 disabled={size.optionQty <= 0}
-                                                onCl
                                                 className={({active}) =>
                                                     classNames(
                                                         size.optionQty > 0
@@ -177,6 +189,26 @@ export const ProductDetails = () => {
 
                             <button
                                 type="submit"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    handleCart.addToCart(product, selectedSize)
+                                    setCart(handleCart.getCartItems())
+
+                                    const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                    }).fire({
+                                        icon: 'success',
+                                        title: 'Cart Updated!'
+                                    })
+                                }}
                                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >
                                 Add to bag

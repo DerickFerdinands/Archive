@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import {Checkout} from "../checkout/Checkout";
 import { useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import {useData} from "../../hooks/data";
+import {useData} from "../../data/data";
 import {ProductList} from "../product/ProductList";
 import axios from "axios";
 
@@ -15,6 +15,7 @@ export const HopePage = ({setOpen,open,setUser,user, setIsHidden}) => {
 
     const {state} = useLocation();
     const [products, setProducts] = useState([])
+
 
 
     useEffect(()=>{
@@ -30,7 +31,7 @@ export const HopePage = ({setOpen,open,setUser,user, setIsHidden}) => {
         }).catch((err)=>{
             console.log(err.response.data.message)
         })
-    })
+    },[])
 
     return <>
         <Hero/>

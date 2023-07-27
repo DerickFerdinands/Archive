@@ -2,6 +2,7 @@ import {Fragment, useEffect, useState} from 'react'
 import { Dialog, Popover, Tab, Transition, Menu } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useNavigate}  from 'react-router-dom';
+import {CustomizeCart} from "../../../data/cart";
 
 
 const navigation = {
@@ -136,10 +137,10 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = ({checkoutOpt,userImageUrl, isHidden})=>{
+export const Nav = ({checkoutOpt,userImageUrl, isHidden,cart,setCart})=>{
     const [open, setOpen] = useState(false)
     const navigate = useNavigate();
-
+    const handleCart = new CustomizeCart();
 
     return <>
         <div className={`bg-white ${isHidden?"hidden":""}`}>
@@ -487,7 +488,7 @@ export const Nav = ({checkoutOpt,userImageUrl, isHidden})=>{
                                                 checkoutOpt(true)
                                             }}
                                         />
-                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{handleCart.getCartLength()}</span>
                                         <span className="sr-only">items in cart, view bag</span>
                                     </a>
                                 </div>
