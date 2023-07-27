@@ -44,7 +44,7 @@ const proceedToCheckout = async (req, res) => {
                 price: updateProduct.price,
                 requestedQty: product.productQty
             });
-
+            console.log(products)
 
         })
 
