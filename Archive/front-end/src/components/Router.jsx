@@ -9,6 +9,8 @@ import {Nav} from "./home/nav/Nav";
 import {useEffect, useRef, useState} from "react";
 import {Checkout} from "./checkout/Checkout";
 import {SortProducts} from "./product/SortProducts";
+import {CheckoutRedirect} from "./checkout/CheckoutRedirect";
+import {Dashboard} from './admin/Login'
 
 export const Router = ()=>{
 
@@ -38,6 +40,8 @@ return<>
                 <Route path={"/apparel"} element={<Apparel user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
                 <Route path={"/products/:category"} element={<SortProducts user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
                 <Route path={"/favourites"} element={<Favourites user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
+                <Route path={"/redirect/:status"} element={<CheckoutRedirect user={user} setUser={setUser} setIsHidden={setIsHidden}/>}/>
+                <Route path={"/admin"} element={<Dashboard/>}/>
             </Routes>
         </BrowserRouter>
 </>

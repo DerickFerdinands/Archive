@@ -32,11 +32,20 @@ export function CustomizeCart() {
 
     }
 
+    this.getDueAmount= ()=>{
+        let total=0;
+        for (let cartItem of cart){
+            total+=(cartItem.price*cartItem.selectedOption.qty);
+        }
+        return total;
+    }
+
     this.removeFromCart = (product) => {
     }
 
     this.clearCart = () => {
-        cart = [];
+        cart=[];
+        sessionStorage.setItem("cart",JSON.stringify(cart))
     }
 
     this.getCartItems = () => {

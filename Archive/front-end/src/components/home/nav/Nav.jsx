@@ -3,7 +3,7 @@ import { Dialog, Popover, Tab, Transition, Menu } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import {useNavigate}  from 'react-router-dom';
 import {CustomizeCart} from "../../../data/cart";
-
+import Cookies from 'js-cookie';
 
 const navigation = {
     categories: [
@@ -137,10 +137,16 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = ({checkoutOpt,userImageUrl, isHidden,cart,setCart})=>{
+export const Nav = ({checkoutOpt, isHidden,cart,setCart})=>{
     const [open, setOpen] = useState(false)
+    const [userImageUrl, setUserImageUrl] = useState(false)
     const navigate = useNavigate();
     const handleCart = new CustomizeCart();
+
+    useEffect(()=>{
+        setUserImageUrl(Cookies.get('userImageUrl'))
+    })
+
 
     return <>
         <div className={`bg-white ${isHidden?"hidden":""}`}>

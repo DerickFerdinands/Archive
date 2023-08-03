@@ -3,6 +3,19 @@ const mongoose = require('mongoose');
 const Purchase = require('../model/Purchase')
 const Product = require('../model/Product')
 
+const getPurchaseID = async () => {
+    return await Purchase.find()
+        .sort({purchaseId: -1})
+        .select({purchaseId: 1, _id: 0})
+        .limit(1).then((purchaseId) => {
+            var str = "" + (+purchaseId[0].purchaseId.split('-')[1] + 1);
+            var pad = "000"
+            var id = purchaseId.length>0? "PU-" + pad.substring(0, pad.length - str.length) + str:"PU-001";
+            return id;
+        }).catch((err) => 'PU-0001')
+
+}
+
 const proceedToCheckout = async (req, res) => {
 
     const dbSession = await mongoose.startSession();
@@ -11,7 +24,7 @@ const proceedToCheckout = async (req, res) => {
         dbSession.startTransaction();
 
         const purchase = new Purchase({
-            purchaseId: req.body.purchaseId,
+            purchaseId: await getPurchaseID(),
             customerEmail: req.body.customerEmail,
             products: req.body.products,
             totalPrice: 0,
@@ -20,8 +33,9 @@ const proceedToCheckout = async (req, res) => {
         })
 
         const products = []
+        const productsItr = [];
 
-        const productsItr = purchase.products.map(async product => {
+        for (let product of purchase.products) {
             let updateProduct = await Product.findOne({code: product.productCode})
             const option = updateProduct.options.filter(opt => opt.optionName === product.productOption)[0]
 
@@ -46,7 +60,13 @@ const proceedToCheckout = async (req, res) => {
             });
             console.log(products)
 
-        })
+            productsItr.push(product);
+
+        }
+
+
+        console.log("ITR", productsItr)
+        purchase.products = productsItr;
 
         await Promise.allSettled(productsItr).then(async () => {
             await purchase.save()
@@ -61,7 +81,7 @@ const proceedToCheckout = async (req, res) => {
                                     currency: 'usd',
                                     product_data: {
                                         name: product.name,
-                                        images: [...product.imageUrls], // URL to the item image
+                                        images: [product.imageUrls[1]], // URL to the item image
                                     },
                                     unit_amount: product.price, // The price in cents or the smallest currency unit
                                 },
@@ -74,8 +94,8 @@ const proceedToCheckout = async (req, res) => {
 
                 ],
                 mode: 'payment',
-                success_url: "http://localhost:3000/api/v1/purchase/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
-                cancel_url: `https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox`,
+                success_url: "http://localhost:3000/redirect/success",
+                cancel_url: `http://localhost:3000/redirect/failed`,
             })
 
             res.json({status: 303, url: session.url});
@@ -93,8 +113,6 @@ const proceedToCheckout = async (req, res) => {
     } finally {
         await dbSession.endSession();
     }
-
-
 }
 
 const processTransaction = async (req, res) => {
