@@ -300,7 +300,7 @@ export const Dashboard = () => {
                                 }).then(function (response) {
                                     //handle success
                                     console.log(response);
-                                    
+
                                     setCode('')
                                     setProductName('')
                                     setBrand('')
