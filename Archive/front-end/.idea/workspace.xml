@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626cdc90-1d4e-4cf2-955c-b9e3b06b84a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/admin/Login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/checkout/CheckoutRedirect.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/controller/PurchaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/controller/PurchaseController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/routes/PurchaseRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/routes/PurchaseRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminProductList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackEnd/controller/ProductController.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/controller/ProductController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackEnd/routes/ProductRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/routes/ProductRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/checkout/Checkout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout/Checkout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/nav/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/nav/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/admin/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/admin/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,29 +42,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/admin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\RWAD\Archive\Archive\front-end\src\components\admin" />
       <recent name="C:\Projects\RWAD\Archive\Archive\front-end\src\assets\images" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -91,7 +73,9 @@
       <workItem from="1690549487054" duration="1275000" />
       <workItem from="1690686041545" duration="2851000" />
       <workItem from="1690957070975" duration="6511000" />
-      <workItem from="1691033745594" duration="17269000" />
+      <workItem from="1691033745594" duration="17425000" />
+      <workItem from="1691116171740" duration="596000" />
+      <workItem from="1691208519618" duration="6376000" />
     </task>
     <servers />
   </component>

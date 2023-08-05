@@ -1,7 +1,7 @@
 import {PhotoIcon} from "@heroicons/react/20/solid";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {ProductList} from "../product/ProductList";
+import {AdminProductList} from "./AdminProductList";
 
 export const Dashboard = () => {
 
@@ -17,7 +17,7 @@ export const Dashboard = () => {
     const [price, setPrice] = useState('');
     const [images, setImages] = useState([]);
 
-    const [products,setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         // let category = this.props.match;
 
@@ -25,19 +25,32 @@ export const Dashboard = () => {
             method: 'get',
             url: `http://localhost:3001/api/v1/product`,
 
-        }).then((response)=>{
+        }).then((response) => {
             console.log(response.data.products)
             setProducts(response.data.products)
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err.response.data.message)
         })
-    },[])
+    }, [])
+
+
+    function handleProductOnClick(code, name, brand, categories, description, options, price, imageUrls) {
+        setCode(code)
+        setName(name)
+        setBrand(brand)
+        setCategories(categories)
+        setDescription(description)
+        setOptions(options)
+        setPrice(+price)
+        setImages(imageUrls)
+        console.log(code, name, brand, categories, description, options, price, imageUrls)
+    }
 
     return <>
         <form onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-12 xl:w-screen flex justify-center items-center gap-5 h-screen">
 
-                <div className="border-b border-gray-900/10 pb-12">
+                <div className="w-2/4 p-5 border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Product Information</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">Fill Product Information.</p>
 
@@ -49,6 +62,7 @@ export const Dashboard = () => {
                             <div className="mt-2">
                                 <input
                                     onChange={(e) => setCode(e.target.value)}
+                                    value={code}
                                     type="text"
                                     name="code"
                                     id="code"
@@ -63,6 +77,7 @@ export const Dashboard = () => {
                             </label>
                             <div className="mt-2">
                                 <input
+                                    value={productName}
                                     onChange={(e) => setProductName(e.target.value)}
                                     type="text"
                                     name="productName"
@@ -79,6 +94,7 @@ export const Dashboard = () => {
                             </label>
                             <div className="mt-2">
                                 <input
+                                    value={brand}
                                     onChange={(e) => setBrand(e.target.value)}
                                     id="productBrand"
                                     name="productBrand"
@@ -137,6 +153,7 @@ export const Dashboard = () => {
                             </label>
                             <div className="mt-2">
                                 <input
+                                    value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     type="text"
                                     name="description"
@@ -233,6 +250,7 @@ export const Dashboard = () => {
                             </label>
                             <div className="mt-2">
                                 <input
+                                    value={price}
                                     onChange={(e) => setPrice(e.target.value)}
                                     type="number"
                                     name="price"
@@ -277,7 +295,7 @@ export const Dashboard = () => {
                                 description.length > 0 &&
                                 price > 0 &&
                                 options.length > 0 &&
-                                images.length ===5
+                                images.length === 5
                             ) {
 
                                 let formData = new FormData();
@@ -324,10 +342,97 @@ export const Dashboard = () => {
                     >
                         Save
                     </button>
-                </div>
 
+                    <button
+                        onClick={async () => {
+                            console.log({
+                                code: code,
+                                name: name,
+                                brand: brand,
+                                category: categories,
+                                description: description,
+                                price: price,
+                                options: options,
+                                imageUrls: images
+                            })
+                            await axios({
+                                method: "put",
+                                url: "http://localhost:3001/api/v1/product/withoutImages",
+                                data: {
+                                    code: code,
+                                    name: productName,
+                                    brand: brand,
+                                    category: categories,
+                                    description: description,
+                                    price: price,
+                                    options: options,
+                                    imageUrls: images
+                                }
+                            }).then(function (response) {
+                                //handle success
+                                console.log(response);
+
+                                setCode('')
+                                setProductName('')
+                                setBrand('')
+                                setCategories([])
+                                setDescription('')
+                                setPrice(0)
+                                setOptions([])
+                                setImages([])
+                            }).catch(function (response) {
+                                //handle error
+                                console.log(response);
+                            });
+                        }
+                        }
+                        type="button"
+                        style={{backgroundColor: '#ffff5e', color: 'black'}}
+                        className="ms-2 mt-5 self-end rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Update
+                    </button>
+                    <button
+                        onClick={async () => {
+                            await axios({
+                                method: "delete",
+                                url: `http://localhost:3001/api/v1/product/${code}`,
+                            }).then(function (response) {
+                                //handle success
+                                console.log(response);
+
+                                setCode('')
+                                setProductName('')
+                                setBrand('')
+                                setCategories([])
+                                setDescription('')
+                                setPrice(0)
+                                setOptions([])
+                                setImages([])
+                            }).catch(function (response) {
+                                //handle error
+                                console.log(response);
+                            });
+                        }}
+                        type="button"
+                        style={{backgroundColor: '#a30a23', color: 'white'}}
+                        className="ms-2 mt-5 self-end rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Delete
+                    </button>
+                    <button
+                        type="button"
+                        style={{backgroundColor: '#1cddf1', color: 'black'}}
+                        className="ms-2 mt-5 self-end rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Cancel
+                    </button>
+                </div>
+                <div className={"w-2/4 h-screen overflow-scroll"}>
+                    <AdminProductList products={products} handleProductOnClick={handleProductOnClick}/>
+                </div>
             </div>
-            <ProductList products={products}/>
+
 
         </form>
     </>

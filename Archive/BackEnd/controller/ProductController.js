@@ -66,9 +66,9 @@ const findProduct = async (req, res) => {
         })
 }
 
-const filterProducts = async (req,res)=>{
+const filterProducts = async (req, res) => {
 
-    await Product.find({category:{ $regex: '.*' + req.body.filterOption + '.*' }})
+    await Product.find({category: {$regex: '.*' + req.body.filterOption + '.*'}})
         .then((success) => {
             res.json({message: "Products Found", data: success});
         })
@@ -149,7 +149,7 @@ const updateProduct = async (req, res) => {
 
                 }
             })
-                .then((success)=>{
+                .then((success) => {
                     res.json({message: "Product Updated", data: success})
                 })
         })
@@ -157,8 +157,35 @@ const updateProduct = async (req, res) => {
             console.log(err)
             res.status(500).json({message: err})
         })
+}
 
+const updateProductsWithoutImages = async (req, res) => {
+    console.log( req.body.code)
+    try {
+        Product.updateOne({code: req.body.code}, {
+            $set: {
+                name: req.body.name,
+                brand: req.body.brand,
+                category: req.body.category,
+                description: req.body.description,
+                price: req.body.price,
+                options: req.body.options,
+                imageUrls: req.body.imageUrls
 
+            }
+        })
+            .then((success) => {
+                console.log(success)
+                res.json({message: "Product Updated", data: success})
+            })
+            .catch((err) => {
+                console.log(err)
+                res.status(500).json({message: err})
+            })
+    }catch(error){
+        console.log(err)
+        res.status(500).json({message: err})
+    }
 }
 
 module.exports = {
@@ -168,5 +195,6 @@ module.exports = {
     findProduct,
     removeProduct,
     updateProduct,
-    filterProducts
+    filterProducts,
+    updateProductsWithoutImages
 }

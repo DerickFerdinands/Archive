@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer')
 const multerGoogleStorage = require('multer-cloud-storage')
-const {testImageUpload, saveProduct, findAllProducts, findProduct,removeProduct,updateProduct,filterProducts} = require('../controller/ProductController');
+const {testImageUpload, saveProduct, findAllProducts, findProduct,removeProduct,updateProduct,filterProducts,updateProductsWithoutImages} = require('../controller/ProductController');
 const path = require('path');
 
 // Define the maximum size for uploading
@@ -38,5 +38,6 @@ router.delete('/:code', removeProduct);
 router.post('/', upload.array("productImages", 5), saveProduct)
 router.post('/filter', filterProducts)
 router.put('/', upload.array("productImages", 5), updateProduct)
+router.put('/withoutImages', updateProductsWithoutImages)
 
 module.exports = router;
