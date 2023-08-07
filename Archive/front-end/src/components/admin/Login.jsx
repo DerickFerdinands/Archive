@@ -20,6 +20,10 @@ export const Dashboard = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         // let category = this.props.match;
+        getProducts();
+    }, [])
+
+    function getProducts(){
 
         axios({
             method: 'get',
@@ -31,12 +35,11 @@ export const Dashboard = () => {
         }).catch((err) => {
             console.log(err.response.data.message)
         })
-    }, [])
-
+    }
 
     function handleProductOnClick(code, name, brand, categories, description, options, price, imageUrls) {
         setCode(code)
-        setName(name)
+        setProductName(name)
         setBrand(brand)
         setCategories(categories)
         setDescription(description)
@@ -327,6 +330,8 @@ export const Dashboard = () => {
                                     setPrice(0)
                                     setOptions([])
                                     setImages([])
+
+                                    getProducts();
                                 })
                                     .catch(function (response) {
                                         //handle error
@@ -380,6 +385,8 @@ export const Dashboard = () => {
                                 setPrice(0)
                                 setOptions([])
                                 setImages([])
+
+                                getProducts();
                             }).catch(function (response) {
                                 //handle error
                                 console.log(response);
@@ -409,6 +416,8 @@ export const Dashboard = () => {
                                 setPrice(0)
                                 setOptions([])
                                 setImages([])
+
+                                getProducts();
                             }).catch(function (response) {
                                 //handle error
                                 console.log(response);
@@ -421,6 +430,16 @@ export const Dashboard = () => {
                         Delete
                     </button>
                     <button
+                        onClick={()=>{
+                            setCode('')
+                            setProductName('')
+                            setBrand('')
+                            setCategories([])
+                            setDescription('')
+                            setPrice(0)
+                            setOptions([])
+                            setImages([])
+                        }}
                         type="button"
                         style={{backgroundColor: '#1cddf1', color: 'black'}}
                         className="ms-2 mt-5 self-end rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
